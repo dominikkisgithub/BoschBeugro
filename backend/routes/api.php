@@ -1,0 +1,10 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EnergyPriceController;
+use App\Http\Middleware\CheckToken;
+
+Route::middleware([CheckToken::class])->group(function () {
+    Route::get('/prices', [EnergyPriceController::class, 'GetPrices']);
+});

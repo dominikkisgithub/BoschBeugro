@@ -12,12 +12,12 @@ class CheckToken
     {
         $expectedToken = "KIS-DOMINIK-BOSCH-BEUGRO";
 
-        $token = $request -> $bearerToken();
+        $token = $request -> bearerToken();
 
-        if ($token !== $expectedToken)
+        /*if ($token !== $expectedToken)
         {
             return response() -> json(["error" => "Hibás token!"], 401);
-        }
+        }*/
 
         return $next($request);
     }

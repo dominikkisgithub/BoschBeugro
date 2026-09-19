@@ -7,34 +7,32 @@ use Illuminate\Support\Facades\Http;
 
 class EnergyPriceController extends Controller
 {
-public function getPrices()
+    public function getPrices()
     {
-        $response = Http::get('https://api.energy-charts.info/v2/price?bzn=HU');
+        $response = Http::get("https://api.energy-charts.info/v2/price?bzn=HU");
 
-        if ($response -> failed()) {
-            return response() -> json(['error' => 'Nem sikerült lekérni az árakat.']);
+        if ($response -> failed())
+        {
+            return response() -> json(["Nem sikerült lekérni az árakat."]);
         }
 
         $data = $response -> json();
 
-        $processedPrices = [];
+        $prices = [];
         
-        for ($i = 0; $i < count($data["data"]); $i++)
+        foreach ($data["data"] as $item)
         {
-            
-            $timestamp = $data["data"][$i]["timestamp"];
+            $currTime = $item["timestamp"];
+            $eurMWh = $item["values"]["day_ahead_price"];
 
-            $eurMWh = $data["data"][$i]["values"]["day_ahead_price"];
-            
-            $hufKWh = ($eurMWh * 1000) * 380;
+            $hufKWh = round(($eurMWh / 1000) * 380, 2);
 
-            $processedPrices[] = [
-                'timestamp' => $timestamp,
-                'price_huf_kwh' => $hufKWh
+            $prices[] = [
+                "time" => $currTime,
+                "priceHufKWh" => $hufKWh
             ];
-
         }
 
-        return response()->json($processedPrices);
+        return response() -> json($prices);
     }
 }

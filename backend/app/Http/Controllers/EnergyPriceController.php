@@ -11,12 +11,12 @@ class EnergyPriceController extends Controller
     {
         $response = Http::get("https://api.energy-charts.info/v2/price?bzn=HU");
 
-        if ($response -> failed())
+        if ($response->failed())
         {
-            return response() -> json(["Nem sikerült lekérni az árakat."]);
+            return response()->json(["Nem sikerült lekérni az árakat."]);
         }
 
-        $data = $response -> json();
+        $data = $response->json();
 
         $prices = [];
         
@@ -33,6 +33,6 @@ class EnergyPriceController extends Controller
             ];
         }
 
-        return response() -> json($prices);
+        return response()->json($prices);
     }
 }

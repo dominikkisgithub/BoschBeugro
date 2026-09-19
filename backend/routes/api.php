@@ -6,5 +6,8 @@ use App\Http\Controllers\EnergyPriceController;
 use App\Http\Middleware\CheckToken;
 
 Route::middleware([CheckToken::class])->group(function () {
-    Route::get('/prices', [EnergyPriceController::class, 'GetPrices']);
+    Route::get("/prices", [EnergyPriceController::class, "GetPrices"]);
+
+    Route::get("/time-blocks", [TimeBlockController::class, "index"]);
+    Route::post("/time-blocks", [TimeBlockController::class, "store"]);
 });

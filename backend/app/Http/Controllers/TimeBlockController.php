@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TimeBlockToHeat;
 
 class TimeBlockController extends Controller
 {
@@ -21,6 +22,8 @@ class TimeBlockController extends Controller
         $timeBlocks = $request->input("time_blocks", []);
 
         foreach ($timeBlocks as $datetimeStr) {
+            $cleanDateTime = trim($datetimeStr);
+
             TimeBlockToHeat::create([
                 "time_block" => $datetimeStr,
             ]);

@@ -1,0 +1,2 @@
+C:\Users\domin\beugro\backend\storage\app\KazanControl.pdb
+C:\Users\domin\beugro\backend\storage\app\KazanControl.exe

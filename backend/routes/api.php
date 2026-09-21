@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnergyPriceController;
+use App\Http\Controllers\TimeBlockController;
 use App\Http\Middleware\CheckToken;
 
 Route::middleware([CheckToken::class])->group(function () {

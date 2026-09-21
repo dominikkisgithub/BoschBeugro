@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('time_block_to_heats', function (Blueprint $table) {
-            $table->id();
-            $table->dateTime("time-block");
-        });
+        Schema::create('time_blocks_to_heat', function (Blueprint $table) {
+        $table->id();
+        $table->string('time_block');
+        $table->timestamps();
+    });
     }
 
     /**
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('time_block_to_heats');
+        Schema::dropIfExists('time_blocks_to_heat');
     }
 };

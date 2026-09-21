@@ -14,10 +14,10 @@ class CheckToken
 
         $token = $request -> bearerToken();
 
-        /*if ($token !== $expectedToken)
+        if ($token !== $expectedToken)
         {
             return response() -> json(["error" => "Hibás token!"], 401);
-        }*/
+        }
 
         return $next($request);
     }
